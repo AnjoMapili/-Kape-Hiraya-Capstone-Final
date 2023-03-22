@@ -253,7 +253,7 @@ $(document).ready(function () {
 
           setTimeout(() => {
             location.reload();
-          }, 2000);
+          }, 1000);
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {

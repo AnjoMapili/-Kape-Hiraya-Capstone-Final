@@ -33,15 +33,21 @@
 
         <div class="main-cards">
 
-            <div class="card">
+       
+        <div class="card">
                 <div class="card-inner">
-                    <h3>TRANSACTIONS</h3>
-                    <span class="material-icons-outlined"> point_of_sale </span>
+                    <h3>CUSTOMERS</h3>
+                    <span class="material-icons-outlined"> groups </span>
                 </div>
-                <h1 class="transaction-count">0</h1>
-                <a class="small text-white stretched-link" href="Transaction.php">View Details</a>
-            </div>
+                <?php
 
+                $sql = "SELECT count(1) AS count FROM customers";
+                $query = mysqli_query($con, $sql) or die(mysqli_error($con));
+                $row = mysqli_fetch_assoc($query);
+                echo '<h1>'.$row['count'].'</h1>';
+                ?>
+                 <a class="small text-white stretched-link" href="Customer.php">View Details</a>
+            </div>
             <div class="card">
                 <div class="card-inner">
                     <h3>PRODUCTS</h3>
@@ -54,26 +60,21 @@
                     $row = mysqli_fetch_assoc($query);
                     echo '<h1>'.$row['count'].'</h1>';
                 ?>
-
+                 <a class="small text-white stretched-link" href="Product.php">View Details</a>
             </div>
-
             <div class="card">
                 <div class="card-inner">
-                    <h3>CUSTOMERS</h3>
-                    <span class="material-icons-outlined"> groups </span>
+                    <h3>Transactions</h3>
+                    <span class="material-icons-outlined"> point_of_sale </span>
                 </div>
-                <?php
-
-                $sql = "SELECT count(1) AS count FROM customers";
-                $query = mysqli_query($con, $sql) or die(mysqli_error($con));
-                $row = mysqli_fetch_assoc($query);
-                echo '<h1>'.$row['count'].'</h1>';
-                ?>
+                <h1 class="transaction-count">0</h1>
+                <a class="small text-white stretched-link" href="Transaction.php">View Details</a>
             </div>
+
 
             <div class="card">
                 <div class="card-inner">
-                    <h3>TRANSACTIONS</h3>
+                    <h3>Sales Report</h3>
                     <span class="material-icons-outlined"> receipt_long </span>
                 </div>
                 <?php
@@ -83,7 +84,13 @@
                 $row = mysqli_fetch_assoc($query);
                 echo '<h1>'.$row['count'].'</h1>';
                 ?>
+                 <a class="small text-white stretched-link" href="SalesReport.php">View Details</a>
             </div>
+
+           
+           
+
+           
             <!--<div class="card">
                 <div class="card-inner">
                     <h3>SALES REPORT</h3>

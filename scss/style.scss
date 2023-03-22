@@ -162,7 +162,7 @@ body {
 
   .main-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 15px;
     margin: 15px 0;
 
@@ -181,10 +181,10 @@ body {
         background-color: yellowgreen;
       }
       &:nth-child(3) {
-        background-color: lightgreen;
+        background-color: rgb(27, 151, 71);
       }
       &:nth-child(4) {
-        background-color: red;
+        background-color: rgb(219, 17, 17);
       }
       &:nth-child(5) {
         background-color: burlywood;
@@ -198,6 +198,10 @@ body {
         > .material-icons-outlined {
           font-size: 30px;
         }
+      }
+      a {
+        color: #eaebf8;
+        font-size: 19px;
       }
     }
   }

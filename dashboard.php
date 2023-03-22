@@ -1,6 +1,8 @@
+
 <link rel="icon" type="image/x-icon" href="img/favicon.png">
 <div class="grid-container">
     <?php
+    error_reporting(0);
     include "Connections/dbconnect.php";
     include "templates/header.php";
     include "templates/sidebar.php";

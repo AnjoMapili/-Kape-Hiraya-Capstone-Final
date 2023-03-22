@@ -58,7 +58,6 @@ if(isset($_POST['type_of_date'])) {
                 <th>Type of Grind</th>
                 <th>Grams</th>
                 <th>Item Count</th>
-                <th>Item Price</th>
                 <th>Total</th>
 
             </tr>
@@ -66,28 +65,20 @@ if(isset($_POST['type_of_date'])) {
             <tbody>';
 
         while($row = mysqli_fetch_assoc($result)) {
-            /*$item_count = 0;
-            if($row['customer_name'] && $row['item_flavor'] && $row['item_type_of_roast'] && $row['item_type_of_grind'] > 1) {
-
-                $sql = mysqli_query($conn, "SELECT * FROM transactions WHERE ")
-            }*/
-
             $table.='<tr>
-                        <td>'.$row['customer_name'].'</td>
+                            <td>'.$row['customer_name'].'</td>
                             <td>'.$row['item_flavor'].'</td>
                             <td>'.$row['item_type_of_roast'].'</td>
                             <td>'.$row['item_type_of_grind'].'</td>
                             <td>'.$row['item_grams'].'</td>
                             <td>'.$row['quantity'].'</td>
-                            <td>₱'.number_format($row['item_price'], 2).'</td>
-                            <td>₱'.number_format($row['quantity'] * $row['item_price'], 2).'</td>
+                            <td>'.number_format($row['item_price'], 2).'</td>
                     </tr>';
         }
 
         $table.='</tbody>
             <tfoot>
                 <tr>
-                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -134,7 +125,7 @@ if(isset($_POST['type_of_date'])) {
 
                 // Total over all pages
                 total = api
-                    .column(7)
+                    .column(6)
                     .data()
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
@@ -142,14 +133,14 @@ if(isset($_POST['type_of_date'])) {
 
                 // Total over this page
                 pageTotal = api
-                    .column(7, { page: 'current' })
+                    .column(6, { page: 'current' })
                     .data()
                 .reduce(function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
 
                 // Update footer
-                $(api.column(7).footer()).html('₱' + pageTotal + ' ( ₱' + total + ' total)');
+                $(api.column(6).footer()).html('₱' + pageTotal + ' ( ₱' + total + ' total)');
             },
         });
     });

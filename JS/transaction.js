@@ -253,7 +253,7 @@ $(document).ready(function () {
 
           setTimeout(() => {
             location.reload();
-          }, 5000);
+          }, 2000);
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -338,7 +338,7 @@ function detailedTransaction(trans_no) {
           "</td></tr>";
 
         html_a += "<tr>";
-       /* html_a +=
+        /* html_a +=
             '<td class="text-center"><input type="text" id="transaction_number" value="'+
             json.data[0].transaction_number +'">'
             "</td>";*/

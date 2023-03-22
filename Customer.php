@@ -8,6 +8,7 @@ include "Connections/dbconnect.php";
       <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/> 
 <link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet" />
       <link rel="stylesheet" href="CSS/transaction.css" />
+      <link rel="icon" type="image/x-icon" href="img/favicon.png">
 <div class="grid-container"> 
     <?php
         include "templates/header.php";

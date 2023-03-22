@@ -11,7 +11,7 @@ echo $dateLast;*/
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.5/css/buttons.dataTables.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<link rel="icon" type="image/x-icon" href="img/favicon.png">
 
 <style>
     table, h1 {

@@ -5,6 +5,7 @@ include "Connections/dbconnect.php";
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet" />
       <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/> 
+      <link rel="icon" type="image/x-icon" href="img/favicon.png">
 <div class="grid-container"> 
 <?php
         include "templates/header.php";

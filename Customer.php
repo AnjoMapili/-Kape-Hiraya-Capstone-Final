@@ -38,34 +38,34 @@ include "Connections/dbconnect.php";
 <div id="errorMessage"class="alert alert-warning d-none"></div>
   <div class="mb-3">
     <label for="Name" class="form-label">Name</label>
-    <input type="text" class="form-control" name="completeName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
+    <input type="text" class="form-control completeName" name="completeName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
    
   </div>
   <div class="mb-3">
     <label for="Email" class="form-label">Email address</label>
-    <input type="email" class="form-control" name="completeEmail" aria-describedby="emailHelp" placeholder="Enter your email" > 
+    <input type="email" class="form-control completeEmail" name="completeEmail" aria-describedby="emailHelp" placeholder="Enter your email" > 
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
    
   </div>
   <div class="mb-3">
     <label for="Contact" class="form-label">Contact #</label>
-    <input type="text" class="form-control" name="completeContact" aria-describedby="emailHelp" placeholder="Enter your contact number" >
+    <input type="text" class="form-control completeContact" name="completeContact" aria-describedby="emailHelp" placeholder="Enter your contact number" >
     
   </div>
   <div class="mb-3">
     <label for="Address" class="form-label">Address</label>
-    <input type="text" class="form-control" name="completeAddress" aria-describedby="emailHelp" placeholder="Enter your Address" >
+    <input type="text" class="form-control completeAddress" name="completeAddress" aria-describedby="emailHelp" placeholder="Enter your Address" >
    
   </div>
   <div class="mb-3">
     <label for="Date" class="form-label">Date</label>
-    <input type="date" class="form-control" name="completeDate" aria-describedby="emailHelp" placeholder="Enter your birthdate"> 
+    <input type="date" class="form-control completeDate" name="completeDate" aria-describedby="emailHelp" placeholder="Enter your birthdate"> 
     
   </div>
 </div>
 <!-- Modal Footer -->
 <div class="modal-footer">
-        <button type="submit" class="btn btn-success">sumbit</button>
+        <button type="submit" id="addcustomer" class="btn btn-success">sumbit</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"onclick="myFunction()" value="Reset form">close</button>
  
       </div> 

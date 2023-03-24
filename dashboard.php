@@ -81,7 +81,7 @@
                 </div>
                 <?php
 
-                $sql = "SELECT count(1) AS count FROM transactions";
+                $sql = "SELECT SUM(item_quantity) AS count FROM transactions";
                 $query = mysqli_query($con, $sql) or die(mysqli_error($con));
                 $row = mysqli_fetch_assoc($query);
                 echo '<h1>'.$row['count'].'</h1>';

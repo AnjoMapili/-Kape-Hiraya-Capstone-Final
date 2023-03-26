@@ -91,11 +91,11 @@ function customers() {
           html += '<td class="text-center">' + v.date + "</td>";
           html += '<td class="text-center">';
           html +=
-            '<span class="material-icons-outlined spn-view-customer" title="View transaction" data-custno="' +
+            '<span class="material-icons-outlined spn-view-transaction" title="View customer" data-custno="' +
             v.customer_number +
             '">search</span>';
           html +=
-            '<span class="material-icons-outlined spn-trash-customer" title="Delete transaction" data-custno="' +
+            '<span class="material-icons-outlined spn-trash-transaction" title="Delete customer" data-custno="' +
             v.customer_number +
             '">delete</span>';
           html += "</td>";

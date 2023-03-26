@@ -82,8 +82,7 @@ include "Connections/dbconnect.php";
                            <select name='customer' class='customer-name form-control fs-5 sel-customer-name' aria-label='Default select example'>
                               <option disabled selected>--select--</option>
                               <?php
-                              $sql = "SELECT * FROM customers
-          ";
+                              $sql = "SELECT * FROM customers";
                               $result = $con->query($sql);
 
                               if ($result->num_rows > 0) {
@@ -142,8 +141,7 @@ include "Connections/dbconnect.php";
                                     <select name='roast' class='sel-roast-item form-control fs-5' aria-label='Default select example'>
                                        <option disabled selected>--select--</option>
                                        <?php
-                                       $sql = "SELECT * FROM  typeofroast
-            ";
+                                       $sql = "SELECT * FROM  typeofroast";
                                        $result = $con->query($sql);
 
                                        if ($result->num_rows > 0) {

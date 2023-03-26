@@ -1,7 +1,15 @@
 $(document).ready(function () {
   customers();
 
-  $(document).on("click", "#addcustomer", function (e) {
+  $(document).on("click", ".btn-create-customer", function () {
+    $("#customerModal").modal("show");
+    // $("#customerModal").modal({
+    //   backdrop: "static",
+    //   keyboard: false,
+    // });
+  });
+
+  $(document).on("click", "#btn_submit_customer", function (e) {
     e.preventDefault();
 
     var customer_name = $(".completeName").val();
@@ -74,9 +82,8 @@ function customers() {
 
       if (json.status == 200) {
         $.each(json.data, function (k, v) {
-          html += "<tr>";
-
-          html += '<td class="text-center">' + (k + 1) + "</td>";
+          html += "<tr class='tr-cust-" + v.id + "'>";
+          html += '<td class="text-center">' + v.customer_number + "</td>";
           html += '<td class="text-center">' + v.name + "</td>";
           html += '<td class="text-center">' + v.email + "</td>";
           html += '<td class="text-center">' + v.contact + "</td>";
@@ -85,11 +92,11 @@ function customers() {
           html += '<td class="text-center">';
           html +=
             '<span class="material-icons-outlined spn-view-customer" title="View transaction" data-custno="' +
-            v.transaction_number +
+            v.customer_number +
             '">search</span>';
           html +=
             '<span class="material-icons-outlined spn-trash-customer" title="Delete transaction" data-custno="' +
-            v.transaction_number +
+            v.customer_number +
             '">delete</span>';
           html += "</td>";
           html += "</tr>";
@@ -98,6 +105,7 @@ function customers() {
       }
 
       $("#tbl-customers").DataTable({
+        ordering: false,
         scrollX: true,
       });
     },

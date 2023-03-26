@@ -55,45 +55,69 @@ public function create($data)
 }
 
 
-   public function read()
-   {
-      $sql = "SELECT * FROM customers";
+public function read($customer_number = null)
+{
+   if ($customer_number) {
+      $customer_number = $this->connection->real_escape_string($customer_number);
+      $sql = "SELECT
+         id,
+         customer_number,
+         name,
+         email,
+         contact,
+         address,
+         date,
+         FROM customers
+         WHERE customer_number = $customer_number";
+   }else {
+      $sql = "SELECT 
+         t.id,
+         t.customer_number,
+         t.name,
+         t.email,
+         t.contact,
+         t.address,
+         t.date
+         FROM customers as t
+         GROUP BY t.customer_number ORDER BY t.id DESC";
+   }
+   $result = $this->connection->query($sql);
 
-      $result = $this->connection->query($sql);
-
-      if ($result) {
-         if ($result->num_rows > 0) {
-            $data = [];
-            while ($row = $result->fetch_assoc()) {
-               $data[] = $row;
-            }
-
-            return $this->getDataAsJSON([
-               'status' => 200,
-               'data' => $data
-            ]);
-         } else {
-            return $this->getDataAsJSON([
-               'status' => 404,
-               'message' => 'No data found'
-            ]);
-         }
-      } else {
-         return $this->getDataAsJSON([
-            'status' => 500,
-            'message' => 'Failed to retrieve data from database'
-         ]);
+if ($result) {
+   if ($result->num_rows > 0) {
+      $data = [];
+      while ($row = $result->fetch_assoc()) {
+         $data[] = $row;
       }
-   }
 
-   public function getDataAsJSON($data)
-   {
-      header('Content-Type: application/json');
-      return json_encode($data);
+      return $this->getDataAsJSON([
+         'status' => 200,
+         'data' => $data
+      ]);
+   } else {
+      return $this->getDataAsJSON([
+         'status' => 404,
+         'message' => 'No data found'
+      ]);
    }
-   public function generateRandomNumber()
-   {
-      $six_digit_random_number = random_int(100000, 999999);
-      return $six_digit_random_number;
-   }
+} else {
+   return $this->getDataAsJSON([
+      'status' => 500,
+      'message' => 'Failed to retrieve data from database'
+   ]);
+}
+
+  
+}
+public function getDataAsJSON($data)
+{
+   header('Content-Type: application/json');
+   return json_encode($data);
+}
+
+public function generateRandomNumber()
+{
+   $six_digit_random_number = random_int(100000, 999999);
+   return $six_digit_random_number;
+}
 }

@@ -22,58 +22,98 @@ include "Connections/dbconnect.php";
       include "templates/dropdownlist.php";
       ?>
     
-  <!-- Modal Fade Add Customer Customer Form -->
-<div class="modal fade" id="completeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" style="color:black;">
-        <h5 class="modal-title fs-5" id="exampleModalLabel" >New Customers Form</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <!-- Modal Body -->
-<div class="modal-body" style="color:black">
- <form id="addCustomer">
-
-<div id="errorMessage"class="alert alert-warning d-none"></div>
-  <div class="mb-3">
-    <label for="Name" class="form-label">Name</label>
-    <input type="text" class="form-control completeName" name="completeName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
-   
-  </div>
-  <div class="mb-3">
-    <label for="Email" class="form-label">Email address</label>
-    <input type="email" class="form-control completeEmail" name="completeEmail" aria-describedby="emailHelp" placeholder="Enter your email" > 
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-   
-  </div>
-  <div class="mb-3">
-    <label for="Contact" class="form-label">Contact #</label>
-    <input type="text" class="form-control completeContact" name="completeContact" aria-describedby="emailHelp" placeholder="Enter your contact number" >
+  <!-- Add Customer Customer Form -->
     
-  </div>
-  <div class="mb-3">
-    <label for="Address" class="form-label">Address</label>
-    <input type="text" class="form-control completeAddress" name="completeAddress" aria-describedby="emailHelp" placeholder="Enter your Address" >
-   
-  </div>
-  <div class="mb-3">
-    <label for="Date" class="form-label">Date</label>
-    <input type="date" class="form-control completeDate" name="completeDate" aria-describedby="emailHelp" placeholder="Enter your birthdate"> 
-    
-  </div>
-</div>
-<!-- Modal Footer -->
-<div class="modal-footer">
-        <button type="submit" id="addcustomer" class="btn btn-success">sumbit</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"onclick="myFunction()" value="Reset form">close</button>
- 
-      </div> 
-</form>   
-      </div>                                
-    </div>
-  </div>
 
+  <div class="container-fluid px-4">
+         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 mt-2 border-bottom">
+            <h1 class="h2">Customers</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+               <div class="btn-group mr-2">
+                  <button class="btn btn-sm btn-secondary btn-create-customer">Add Customer</button>
+               </div>
+            </div>
+         </div>
+
+         <div class="my-3 p-3 shadow-sm tbl-container">
+            <table id="tbl-customers" class="display tbl-customers" style="width:100%">
+               <thead>
+                  <tr>
+                     <th class="text-center">Customer #</th>
+                     <th class="text-center">Name</th>
+                     <th class="text-center">Email</th>
+                     <th class="text-center">Contact No.</th>
+                     <th class="text-center">Address</th>
+                     <th class="text-center">Date</th>
+                     <th class="text-center"></th>
+                    
+                  </tr>
+               </thead>
+               <tbody>
+               </tbody>
+            </table>
+         </div>
+
+         <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg ">
+               <div class="modal-content ">
+                  <div class="modal-header " style="color:black;">
+                     <h4 class="modal-title" id="exampleModalLabel">Add Customer</h4>
+                  </div>
+
+
+                  <!-- Modal Body -->
+                  <div class="modal-body" style="color:black">
+
+                     <div class="col-12 mt-4">
+                        <label for="titleInfo" class="form-label">
+                           <H3>CUSTOMER INFORMATION</H3>
+                        </label>
+                     </div>
+
+               <form class="row g-3">
+
+                        
+                  <div class="mb-3">
+                          <label for="Name" class="form-label">Name</label>
+                          <input type="text" class="form-control completeName" name="completeName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
+                  </div>
+
+                  <div class="mb-3">
+                          <label for="Email" class="form-label">Email address</label>
+                          <input type="email" class="form-control completeEmail" name="completeEmail" aria-describedby="emailHelp" placeholder="Enter your email" > 
+                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  </div>
+
+                  <div class="mb-3">
+                        <label for="Contact" class="form-label">Contact #</label>
+                        <input type="text" class="form-control completeContact" name="completeContact" aria-describedby="emailHelp" placeholder="Enter your contact number" >   
+                  </div>
+
+                  <div class="mb-3">
+                        <label for="Address" class="form-label">Address</label>
+                        <input type="text" class="form-control completeAddress" name="completeAddress" aria-describedby="emailHelp" placeholder="Enter your Address" >
+                  </div>
+
+                  <div class="mb-3">
+                        <label for="Date" class="form-label">Date</label>
+                        <input type="date" class="form-control completeDate" name="completeDate" aria-describedby="emailHelp" placeholder="Enter your birthdate"> 
+                  </div>
+
+               </form>
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                    
+                        <button type="submit" value="Submit" class="btn btn-success" id="btn_submit_customer">Sumbit</button>
+                        <button type="button" class="btn btn-secondary btn-close-mdl" value="Close">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+                                    
 
   <!-- Update Form -->
   <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -153,40 +193,11 @@ include "Connections/dbconnect.php";
 </div>
     
 
-  <div class="container-fluid px-4">
-    <h2 class="mt-4">CUSTOMERS LIST</h2>
-   
-  
 
-       <!-- Add Customer button Modal -->
-<button type="button" id="btncustomer" class="btn btn-dark my-3" data-bs-toggle="modal" data-bs-target="#completeModal">
-  Add New Customers
 
 </button>
 
-<div class="my-3 p-3 shadow-sm tbl-container">
-  <table id="tbl-customers" class="display tbl-transactions" style="width:100%">
-      <thead>
-        <tr>
-          <th class="text-center">ID</th>
-          <th class="text-center">Name</th>
-          <th class="text-center">Email</th>
-          <th class="text-center">Contact</th>
-          <th class="text-center">Address</th>
-          <th class="text-center">Date</th>
-          <th class="text-center">Operation</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-  </table>
-</div>
 
-
-    </thead>
-  
-</table>
-</div>
 </main>
 <!-- End Main -->
 
@@ -198,9 +209,16 @@ include "Connections/dbconnect.php";
 <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 
 <script src="JS/adduser.js"></script>
-<script src="JS/customer.js"></script>
+<script src="js/customer.js"></script>
 <script src="JS/script.js"></script>
 
 
 
-      
+
+
+
+------------------------------------------
+
+
+
+

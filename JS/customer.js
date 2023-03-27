@@ -80,6 +80,39 @@ $(document).ready(function () {
   });
 });
 
+$(document).on("click", ".spn-trash-transaction", function () {
+  var cust_no = $(this).data("custno");
+  console.log(cust_no);
+
+  $.ajax({
+    url: "customer_delete.php",
+    type: "POST",
+    dataType: "text",
+    data: {
+      action: "delete",
+      cust_no: cust_no,
+    },
+    success: function (data) {
+      var json = $.parseJSON(data);
+      if (json == null) return false;
+
+      if (json.status == 200) {
+        alertify.set("notifier", "position", "top-right");
+        alertify.success(json.message);
+
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR.status);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
+  });
+});
+
 function customers() {
   var html = "";
   $.ajax({

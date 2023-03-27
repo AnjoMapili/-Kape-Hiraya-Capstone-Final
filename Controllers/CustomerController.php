@@ -106,9 +106,34 @@ if ($result) {
       'message' => 'Failed to retrieve data from database'
    ]);
 }
-
-  
 }
+ public function delete($cust_no)
+   {
+      $customer_number = $this->connection->real_escape_string($cust_no);
+      $sql = "DELETE FROM `customers` WHERE customer_number = '$customer_number'";
+
+      $result = $this->connection->query($sql);
+
+      if ($result) {
+         if ($this->connection->affected_rows > 0) {
+            return $this->getDataAsJSON([
+               'status' => 200,
+               'message' => 'Customer deleted successfully'
+            ]);
+         } else {
+            return $this->getDataAsJSON([
+               'status' => 404,
+               'message' => 'Customer not found'
+            ]);
+         }
+      } else {
+         return $this->getDataAsJSON([
+            'status' => 500,
+            'message' => 'Failed to delete customer'
+         ]);
+      }
+   }
+
 public function getDataAsJSON($data)
 {
    header('Content-Type: application/json');

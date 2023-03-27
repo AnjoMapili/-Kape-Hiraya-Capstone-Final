@@ -17,6 +17,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'submit') {
       'customer_address' => $customer_address,
       'customer_date' =>  $customer_date,
    ];
+   
 
    // create a new instance of TransactionController and call the create() function
    $customerController = new CustomerController($con);

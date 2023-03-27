@@ -41,6 +41,7 @@ $(document).ready(function () {
     ) {
       alertify.set("notifier", "position", "top-right");
       alertify.error("Please fill out all fields.");
+      return;
     }
 
     $.ajax({

@@ -105,7 +105,7 @@ include "Connections/dbconnect.php";
                   <div class="modal-footer">
                     
                         <button type="submit" value="Submit" class="btn btn-success" id="btn_submit_customer">Sumbit</button>
-                        <button type="button" class="btn btn-secondary btn-close-mdl" value="Close">Close</button>
+                        <button type="button" class="btn btn-secondary btn-close-mdl-customer" value="Close">Close</button>
                      </div>
                   </div>
                </div>

@@ -1,14 +1,24 @@
 $(document).ready(function () {
   customers();
 
+  // $(document).on("click", ".btn-create-customer", function () {
+  //   $("#customerModal").modal("show");
+  //   // $("#customerModal").modal({
+  //   //   backdrop: "static",
+  //   //   keyboard: false,
+  //   // });
+  // });
   $(document).on("click", ".btn-create-customer", function () {
+    $("#customerModal").modal({
+      backdrop: "static",
+      keyboard: false,
+    });
     $("#customerModal").modal("show");
-    // $("#customerModal").modal({
-    //   backdrop: "static",
-    //   keyboard: false,
-    // });
   });
-
+  $(document).on("click", ".btn-close-mdl-customer", function () {
+    $("#customerModal").modal("hide");
+    // $("#mdl-view-details").modal("hide");
+  });
   $(document).on("click", "#btn_submit_customer", function (e) {
     e.preventDefault();
 

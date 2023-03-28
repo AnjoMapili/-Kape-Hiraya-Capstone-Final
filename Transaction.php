@@ -227,7 +227,7 @@ include "Connections/dbconnect.php";
                   <div class="modal-footer justify-content-between">
                      <div style="color: #000;">Total Quantity: <span class="spn-qty">0</span> | Total Price: ₱<span class="spn-price">0.00</span></div>
                      <div>
-                        <button type="submit" value="Submit" class="btn btn-success" id="btn-submit-item">Sumbit</button>
+                        <button type="submit" value="Submit" class="btn btn-success" id="btn-submit-item">Paid</button>
                         <button type="button" class="btn btn-secondary btn-close-mdl" value="Close">Close</button>
                      </div>
                   </div>

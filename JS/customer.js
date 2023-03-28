@@ -8,6 +8,10 @@ $(document).ready(function () {
   //   //   keyboard: false,
   //   // });
   // });
+  $(document).on("click", ".btn-close-view-customer-mdl", function () {
+    $("#mdl-view-details-customer").modal("hide");
+    // $("#mdl-view-details").modal("hide");
+  });
   $(document).on("click", ".btn-create-customer", function () {
     $("#customerModal").modal({
       backdrop: "static",
@@ -82,7 +86,7 @@ $(document).ready(function () {
 
 $(document).on("click", ".spn-trash-transaction", function () {
   var cust_no = $(this).data("custno");
-  console.log(cust_no);
+  // console.log(cust_no);
 
   $.ajax({
     url: "customer_delete.php",
@@ -112,7 +116,52 @@ $(document).on("click", ".spn-trash-transaction", function () {
     },
   });
 });
+$(document).on("click", ".spn-view-transaction", function () {
+  $("#mdl-view-details-customer").modal({
+    backdrop: "static",
+    keyboard: false,
+  });
+  $("#mdl-view-details-customer").modal("show");
+  var cust_no = $(this).data("custno");
+  console.log(cust_no);
+  detailedCustomer(cust_no);
+});
 
+function detailedCustomer(cust_no) {
+  var html = "";
+  $.ajax({
+    url: "customer_list.php?cust_no=" + cust_no,
+    type: "GET",
+    dataType: "text",
+    beforeSend: function () {},
+    success: function (data) {
+      var json = $.parseJSON(data);
+      if (json == null) return false;
+      console.log(json);
+      if (json.status == 200) {
+        $.each(json.data, function (k, v) {
+          html += "<tr class='tr-cust-" + v.id + "'>";
+          html += '<td class="text-center">' + v.customer_number + "</td>";
+          html += '<td class="text-center">' + v.name + "</td>";
+          html += '<td class="text-center">' + v.email + "</td>";
+          html += '<td class="text-center">' + v.contact + "</td>";
+          html += '<td class="text-center">' + v.address + "</td>";
+          html += '<td class="text-center">' + v.date + "</td>";
+          html += '<td class="text-center">';
+
+          html += "</td>";
+          html += "</tr>";
+        });
+        $("#tbl-customers > tbody").html(html);
+      }
+
+      $("#tbl-customers").DataTable({
+        ordering: false,
+        scrollX: true,
+      });
+    },
+  });
+}
 function customers() {
   var html = "";
   $.ajax({
@@ -127,13 +176,29 @@ function customers() {
       if (json.status == 200) {
         $.each(json.data, function (k, v) {
           html += "<tr class='tr-cust-" + v.id + "'>";
-          html += '<td class="text-center">' + v.customer_number + "</td>";
-          html += '<td class="text-center">' + v.name + "</td>";
-          html += '<td class="text-center">' + v.email + "</td>";
-          html += '<td class="text-center">' + v.contact + "</td>";
-          html += '<td class="text-center">' + v.address + "</td>";
-          html += '<td class="text-center">' + v.date + "</td>";
-          html += '<td class="text-center">';
+          html +=
+            '<td class="text-center" style="color:D1D6DD;">' +
+            v.customer_number +
+            "</td>";
+          html +=
+            '<td class="text-center" style="color:D1D6DD;">' + v.name + "</td>";
+          html +=
+            '<td class="text-center"  style="color:D1D6DD;">' +
+            v.email +
+            "</td>";
+          html +=
+            '<td class="text-center"  style="color:D1D6DD;">' +
+            v.contact +
+            "</td>";
+          html +=
+            '<td class="text-center"  style="color:D1D6DD;">' +
+            v.address +
+            "</td>";
+          html +=
+            '<td class="text-center"  style="color:D1D6DD;">' +
+            v.date +
+            "</td>";
+          html += '<td class="text-center"  style="color:D1D6DD;">';
           html +=
             '<span class="material-icons-outlined spn-view-transaction" title="View customer" data-custno="' +
             v.customer_number +

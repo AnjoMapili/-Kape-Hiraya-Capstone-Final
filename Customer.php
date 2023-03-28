@@ -36,7 +36,7 @@ include "Connections/dbconnect.php";
          </div>
 
          <div class="my-3 p-3 shadow-sm tbl-container">
-            <table id="tbl-customers" class="display tbl-customers" style="width:100%;">
+            <table id="tbl-customers" class="display tbl-customers" style="width:100%; color:F3F4F4">
                <thead>
                   <tr>
                      <th class="text-center">Customer #</th>

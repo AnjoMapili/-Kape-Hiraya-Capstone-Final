@@ -66,7 +66,7 @@ public function read($customer_number = null)
          email,
          contact,
          address,
-         date,
+         date
          FROM customers
          WHERE customer_number = $customer_number";
    }else {

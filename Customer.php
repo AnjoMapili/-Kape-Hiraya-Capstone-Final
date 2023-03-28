@@ -36,7 +36,7 @@ include "Connections/dbconnect.php";
          </div>
 
          <div class="my-3 p-3 shadow-sm tbl-container">
-            <table id="tbl-customers" class="display tbl-customers" style="width:100%">
+            <table id="tbl-customers" class="display tbl-customers" style="width:100%;">
                <thead>
                   <tr>
                      <th class="text-center">Customer #</th>
@@ -197,6 +197,59 @@ include "Connections/dbconnect.php";
 
 </button>
 
+<div class="modal fade" id="mdl-view-details-customer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+               <div class="modal-content ">
+                  <div class="modal-header" style="color:black;">
+                     <h4 class="modal-title" id="exampleModalLabel">Detailed Customer</h4>
+                  </div>
+
+                  <!-- Modal Body -->
+                  <div class="modal-body" id="dv-detail-mdl-body-print" style="color:black">
+                   
+               <form id="detailedCustomer" class="row g-3">
+                    <div class="mb-3">
+                            <label for="customer_no" class="form-label">Customer #</label>
+                            <input type="text" class="form-control customer_no" id="cust_number" name="customer_no" aria-describedby="emailHelp" placeholder="Enter your name"  > 
+                    </div>
+                    <div class="mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            <input type="text" class="form-control completeName" name="completeName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
+                    </div>
+
+                    <div class="mb-3">
+                            <label for="Email" class="form-label">Email address</label>
+                            <input type="email" class="form-control completeEmail" name="completeEmail" aria-describedby="emailHelp" placeholder="Enter your email" > 
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+
+                    <div class="mb-3">
+                          <label for="Contact" class="form-label">Contact #</label>
+                          <input type="text" class="form-control completeContact" name="completeContact" aria-describedby="emailHelp" placeholder="Enter your contact number" >   
+                    </div>
+
+                    <div class="mb-3">
+                          <label for="Address" class="form-label">Address</label>
+                          <input type="text" class="form-control completeAddress" name="completeAddress" aria-describedby="emailHelp" placeholder="Enter your Address" >
+                    </div>
+
+                    <div class="mb-3">
+                          <label for="Date" class="form-label">Date</label>
+                          <input type="date" class="form-control completeDate" name="completeDate" aria-describedby="emailHelp" placeholder="Enter your birthdate"> 
+                    </div>
+
+</form>
+
+
+                  <!-- Modal Footer -->
+                  <div class="modal-footer border-0">
+                     <button type="button" class="btn btn-secondary btn-close-view-customer-mdl" value="Close">Close</button>
+                     <button type="button" class="btn btn-success btn-view-mdl" value="view" id="update_customer_btn">Update</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+   <!-- End Main -->
 
 </main>
 <!-- End Main -->

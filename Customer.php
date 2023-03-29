@@ -23,8 +23,6 @@ include "Connections/dbconnect.php";
       ?>
     
   <!-- Add Customer Customer Form -->
-    
-
   <div class="container-fluid px-4">
          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 mt-2 border-bottom">
             <h1 class="h2">Customers</h1>
@@ -45,7 +43,7 @@ include "Connections/dbconnect.php";
                      <th class="text-center">Contact No.</th>
                      <th class="text-center">Address</th>
                      <th class="text-center">Date</th>
-                     <th class="text-center"></th>
+                     <th class="text-right"></th>
                     
                   </tr>
                </thead>
@@ -110,63 +108,61 @@ include "Connections/dbconnect.php";
                   </div>
                </div>
             </div>
-         </div>
-
-
-                                    
-
+         </div>                       
   <!-- Update Form -->
-  <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" style="color:black;">
-        <h5 class="modal-title fs-5" id="exampleModalLabel" >Edit Customer</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+  <div class="modal fade" id="updateCustModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg ">
+               <div class="modal-content ">
+                  <div class="modal-header " style="color:black;">
+                     <h3 class="modal-title" id="exampleModalLabel">Edit Customer</h3>
+                  </div>
 
-      <!-- Modal Body -->
-<div class="modal-body" style="color:black">
-<form id=updateCustomer> 
-<div id="errorMessageUpdate"class="alert alert-warning d-none"></div>
-<input type="hidden" name="customer_id" id="customer_id">
 
-  <div class="mb-3">
-    <label for="Name" class="form-label">Name</label>
-    <input type="text" class="form-control" name="completeName" id="UcompleteName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
-   
-  </div>
-  <div class="mb-3">
-    <label for="Email" class="form-label">Email address</label>
-    <input type="email" class="form-control" name="completeEmail" id="UcompleteEmail" aria-describedby="emailHelp" placeholder="Enter your email" > 
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-   
-  </div>
-  <div class="mb-3">
-    <label for="Contact" class="form-label">Contact #</label>
-    <input type="text" class="form-control" name="completeContact" id="UcompleteContact" aria-describedby="emailHelp" placeholder="Enter your contact number" >
-    
-  </div>
-  <div class="mb-3">
-    <label for="Address" class="form-label">Address</label>
-    <input type="text" class="form-control" name="completeAddress" id="UcompleteAddress" aria-describedby="emailHelp" placeholder="Enter your Address" >
-   
-  </div>
-  <div class="mb-3">
-    <label for="Date" class="form-label">Date</label>
-    <input type="date" class="form-control" name="completeDate" id="UcompleteDate" aria-describedby="emailHelp" placeholder="Enter your birthdate"> 
-    
-  </div>
-</div>
-<!-- Modal Footer -->
-<div class="modal-footer">
-        <button type="submit"  id="saveUpdate" class="btn btn-success">Update</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
- 
-      </div> 
-</form>   
-      </div>                                
-    </div>
-  </div>
+                  <!-- Modal Body -->
+                  <div class="modal-body" style="color:black">
+
+                   
+
+               <form  id="updateField"class="row g-3">
+
+                  <div class="mb-3">
+                          <label for="Name" class="form-label">Name</label>
+                          <input type="text" class="form-control updateName" name="updateName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
+                  </div>
+
+                  <div class="mb-3">
+                          <label for="Email" class="form-label">Email address</label>
+                          <input type="email" class="form-control updateEmail" name="updateEmail" aria-describedby="emailHelp" placeholder="Enter your email" > 
+                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  </div>
+
+                  <div class="mb-3">
+                        <label for="Contact" class="form-label">Contact #</label>
+                        <input type="text" class="form-control updateContact" name="updateContact" aria-describedby="emailHelp" placeholder="Enter your contact number" >   
+                  </div>
+
+                  <div class="mb-3">
+                        <label for="Address" class="form-label">Address</label>
+                        <input type="text" class="form-control updateAddress" name="updateAddress" aria-describedby="emailHelp" placeholder="Enter your Address" >
+                  </div>
+
+                  <div class="mb-3">
+                        <label for="Date" class="form-label">Date</label>
+                        <input type="date" class="form-control updateDate" name="updateDate" aria-describedby="emailHelp" placeholder="Enter your birthdate"> 
+                  </div>
+
+               </form>
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                    
+                        <button type="submit" value="Submit" class="btn btn-success" id="btn_submit_customer">Sumbit</button>
+                        <button type="button" class="btn btn-secondary btn-close-mdl-customer" value="Close">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+  
 
 <!-- Delete Modal -->
 

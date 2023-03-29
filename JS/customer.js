@@ -20,7 +20,7 @@ $(document).ready(function () {
     $("#customerModal").modal("show");
   });
   $(document).on("click", ".btn-close-mdl-customer", function () {
-    $("#customerModal").modal("hide");
+    $("#updateCustModal").modal("hide");
     // $("#mdl-view-details").modal("hide");
   });
   $(document).on("click", "#btn_submit_customer", function (e) {
@@ -117,13 +117,13 @@ $(document).on("click", ".spn-trash-transaction", function () {
   });
 });
 $(document).on("click", ".spn-view-transaction", function () {
-  $("#mdl-view-details-customer").modal({
+  $("#updateCustModal").modal({
     backdrop: "static",
     keyboard: false,
   });
-  $("#mdl-view-details-customer").modal("show");
+  $("#updateCustModal").modal("show");
   var cust_no = $(this).data("custno");
-  console.log(cust_no);
+  // console.log(cust_no);
   detailedCustomer(cust_no);
 });
 
@@ -140,25 +140,13 @@ function detailedCustomer(cust_no) {
       console.log(json);
       if (json.status == 200) {
         $.each(json.data, function (k, v) {
-          html += "<tr class='tr-cust-" + v.id + "'>";
-          html += '<td class="text-center">' + v.customer_number + "</td>";
-          html += '<td class="text-center">' + v.name + "</td>";
-          html += '<td class="text-center">' + v.email + "</td>";
-          html += '<td class="text-center">' + v.contact + "</td>";
-          html += '<td class="text-center">' + v.address + "</td>";
-          html += '<td class="text-center">' + v.date + "</td>";
-          html += '<td class="text-center">';
-
-          html += "</td>";
-          html += "</tr>";
+          $(".updateName").val(v.name);
+          $(".updateEmail").val(v.email);
+          $(".updateContact").val(v.contact);
+          $(".updateAddress").val(v.address);
+          $(".updateDate").val(v.date);
         });
-        $("#tbl-customers > tbody").html(html);
       }
-
-      $("#tbl-customers").DataTable({
-        ordering: false,
-        scrollX: true,
-      });
     },
   });
 }
@@ -198,7 +186,7 @@ function customers() {
             '<td class="text-center"  style="color:D1D6DD;">' +
             v.date +
             "</td>";
-          html += '<td class="text-center"  style="color:D1D6DD;">';
+          html += '<td class="text-center" >';
           html +=
             '<span class="material-icons-outlined spn-view-transaction" title="View customer" data-custno="' +
             v.customer_number +

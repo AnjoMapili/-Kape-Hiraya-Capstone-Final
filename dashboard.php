@@ -13,6 +13,10 @@
             background-color: #333;
             color: #fff;
         }*/
+        body{
+            overflow: hidden;
+        }
+
         .apexcharts-menu-item:hover {
             color: #333;
         }
@@ -30,7 +34,7 @@
         ?>
 
         <div class="main-title">
-            <h4>DASHBOARD</h4>
+            <h2>DASHBOARD</h2>
         </div>
 
         <div class="main-cards">

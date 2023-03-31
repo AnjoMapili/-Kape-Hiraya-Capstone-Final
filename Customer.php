@@ -155,7 +155,7 @@ include "Connections/dbconnect.php";
                   <!-- Modal Footer -->
                   <div class="modal-footer">
                     
-                        <button type="submit" value="Submit" class="btn btn-success" id="btn_submit_customer">Sumbit</button>
+                        <button type="submit" value="Submit" class="btn btn-success" id="btn_update_customer">Update</button>
                         <button type="button" class="btn btn-secondary btn-close-mdl-customer" value="Close">Close</button>
                      </div>
                   </div>
@@ -164,88 +164,8 @@ include "Connections/dbconnect.php";
          </div>
   
 
-<!-- Delete Modal -->
-
-<!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content" style="color:black">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Data</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" >
-        <form id="deleteID">
-      <input type="hidden" name="delete_id" id="delete_id">
-        <h4>Are you sure you want to delete this data?</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class=" btn btn-danger">Delete</button>
-      </div>
-</form>
-    </div>
-  </div>
-</div>
-    
 
 
-
-</button>
-
-<div class="modal fade" id="mdl-view-details-customer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-               <div class="modal-content ">
-                  <div class="modal-header" style="color:black;">
-                     <h4 class="modal-title" id="exampleModalLabel">Detailed Customer</h4>
-                  </div>
-
-                  <!-- Modal Body -->
-                  <div class="modal-body" id="dv-detail-mdl-body-print" style="color:black">
-                   
-               <form id="detailedCustomer" class="row g-3">
-                    <div class="mb-3">
-                            <label for="customer_no" class="form-label">Customer #</label>
-                            <input type="text" class="form-control customer_no" id="cust_number" name="customer_no" aria-describedby="emailHelp" placeholder="Enter your name"  > 
-                    </div>
-                    <div class="mb-3">
-                            <label for="Name" class="form-label">Name</label>
-                            <input type="text" class="form-control completeName" name="completeName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
-                    </div>
-
-                    <div class="mb-3">
-                            <label for="Email" class="form-label">Email address</label>
-                            <input type="email" class="form-control completeEmail" name="completeEmail" aria-describedby="emailHelp" placeholder="Enter your email" > 
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-
-                    <div class="mb-3">
-                          <label for="Contact" class="form-label">Contact #</label>
-                          <input type="text" class="form-control completeContact" name="completeContact" aria-describedby="emailHelp" placeholder="Enter your contact number" >   
-                    </div>
-
-                    <div class="mb-3">
-                          <label for="Address" class="form-label">Address</label>
-                          <input type="text" class="form-control completeAddress" name="completeAddress" aria-describedby="emailHelp" placeholder="Enter your Address" >
-                    </div>
-
-                    <div class="mb-3">
-                          <label for="Date" class="form-label">Date</label>
-                          <input type="date" class="form-control completeDate" name="completeDate" aria-describedby="emailHelp" placeholder="Enter your birthdate"> 
-                    </div>
-
-</form>
-
-
-                  <!-- Modal Footer -->
-                  <div class="modal-footer border-0">
-                     <button type="button" class="btn btn-secondary btn-close-view-customer-mdl" value="Close">Close</button>
-                     <button type="button" class="btn btn-success btn-view-mdl" value="view" id="update_customer_btn">Update</button>
-                  </div>
-               </div>
-            </div>
-         </div>
-   <!-- End Main -->
 
 </main>
 <!-- End Main -->

@@ -103,7 +103,7 @@ include "Connections/dbconnect.php";
                   <div class="modal-footer">
                     
                         <button type="submit" value="Submit" class="btn btn-success" id="btn_submit_customer">Sumbit</button>
-                        <button type="button" class="btn btn-secondary btn-close-mdl-customer" value="Close">Close</button>
+                        <button type="button" class="btn btn-secondary btn-close-add-customer" value="Close">Close</button>
                      </div>
                   </div>
                </div>
@@ -124,6 +124,7 @@ include "Connections/dbconnect.php";
                    
 
                <form  id="updateField"class="row g-3">
+                 
 
                   <div class="mb-3">
                           <label for="Name" class="form-label">Name</label>
@@ -156,7 +157,7 @@ include "Connections/dbconnect.php";
                   <div class="modal-footer">
                     
                         <button type="submit" value="Submit" class="btn btn-success" id="btn_update_customer">Update</button>
-                        <button type="button" class="btn btn-secondary btn-close-mdl-customer" value="Close">Close</button>
+                        <button type="button" class="btn btn-secondary btn-close-view-customer" value="Close">Close</button>
                      </div>
                   </div>
                </div>

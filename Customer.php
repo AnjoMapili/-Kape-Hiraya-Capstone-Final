@@ -125,7 +125,10 @@ include "Connections/dbconnect.php";
 
                <form  id="updateField"class="row g-3">
                  
-
+               <div class="mb-3">
+            
+                          <input type="hidden" class="form-control custNumber" name="updateName" aria-describedby="emailHelp" placeholder="Enter your name"  > 
+                  </div>
                   <div class="mb-3">
                           <label for="Name" class="form-label">Name</label>
                           <input type="text" class="form-control updateName" name="updateName" aria-describedby="emailHelp" placeholder="Enter your name"  > 

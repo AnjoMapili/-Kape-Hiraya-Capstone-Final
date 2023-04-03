@@ -6,6 +6,7 @@ include "Connections/dbconnect.php";
       rel="stylesheet" />
       <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/> 
       <link rel="icon" type="image/x-icon" href="img/favicon.png">
+       <link rel="stylesheet" href="CSS/transaction.css">
 <div class="grid-container"> 
 <?php
         include "templates/header.php";

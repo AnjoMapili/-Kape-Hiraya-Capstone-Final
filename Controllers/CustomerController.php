@@ -107,6 +107,40 @@ if ($result) {
    ]);
 }
 }
+public function update($data)
+{
+   $customer_number = $data['customer_number'];
+   $customer_name = $data['customer_name'];
+   $customer_email = $data['customer_email'];
+   $customer_contact = $data['customer_contact'];
+   $customer_address = $data['customer_address'];
+   $customer_date = $data['customer_date'];
+    // prepare the statement
+      $stmt = $this->connection->prepare("UPDATE `customers` SET name=?,email=?, contact=?, address=?, date=? WHERE customer_number=?");
+
+      if (!$stmt) {
+         return $this->getDataAsJSON([
+            'status' => 500,
+            'message' => 'Failed to prepare SQL statement'
+         ]);
+      }
+
+      // bind the values
+      $stmt->bind_param("ssssss",$customer_name , $customer_email, $customer_contact, $customer_address,  $customer_date, $customer_number);
+
+      // execute the statement
+      $result = $stmt->execute();
+      if (!$result) {
+         return $this->getDataAsJSON([
+            'status' => 500,
+            'message' => 'Failed to prepare SQL statement'
+         ]);
+      }
+   return $this->getDataAsJSON([
+      'status' => 200,
+      'message' => "New record updated successfully"
+   ]);
+}
  public function delete($cust_no)
    {
       $customer_number = $this->connection->real_escape_string($cust_no);

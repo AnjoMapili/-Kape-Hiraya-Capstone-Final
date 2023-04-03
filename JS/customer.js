@@ -8,10 +8,6 @@ $(document).ready(function () {
   //   //   keyboard: false,
   //   // });
   // });
-  $(document).on("click", ".btn-close-view-customer-mdl", function () {
-    $("#mdl-view-details-customer").modal("hide");
-    // $("#mdl-view-details").modal("hide");
-  });
   $(document).on("click", ".btn-create-customer", function () {
     $("#customerModal").modal({
       backdrop: "static",
@@ -19,8 +15,20 @@ $(document).ready(function () {
     });
     $("#customerModal").modal("show");
   });
-  $(document).on("click", ".btn-close-mdl-customer", function () {
+  $(document).on("click", ".btn-close-add-customer", function () {
+    $("#customerModal").modal("hide");
+
+    $(".completeName").val("");
+    $(".completeEmail").val("");
+    $(".completeContact").val("");
+    $(".completeAddress").val("");
+    $(".completeDate").val("");
+
+    // $("#mdl-view-details").modal("hide");
+  });
+  $(document).on("click", ".btn-close-view-customer", function () {
     $("#updateCustModal").modal("hide");
+
     // $("#mdl-view-details").modal("hide");
   });
   $(document).on("click", "#btn_submit_customer", function (e) {
@@ -61,9 +69,9 @@ $(document).ready(function () {
         customer_date: customer_date,
       },
       success: function (data) {
+        // console.log(data)
         var json = $.parseJSON(data);
         if (json == null) return false;
-
         if (json.status == 200) {
           $("#TransactionModal").modal("hide");
 
@@ -81,6 +89,64 @@ $(document).ready(function () {
         console.log(errorThrown);
       },
     });
+  });
+});
+
+$(document).on("click", "#btn_update_customer", function (e) {
+  e.preventDefault();
+  var customer_number = $(".custNumber").val();
+  var customer_name = $(".updateName").val();
+  var customer_email = $(".updateEmail").val();
+  var customer_contact = $(".updateContact").val();
+  var customer_address = $(".updateAddress").val();
+  var customer_date = $(".updateDate").val();
+
+  if (
+    !customer_name ||
+    !customer_email ||
+    !customer_address ||
+    !customer_contact ||
+    !customer_date
+  ) {
+    alertify.set("notifier", "position", "top-right");
+    alertify.error("Please fill out all fields.");
+    return;
+  }
+  $.ajax({
+    url: "customer_update.php",
+    type: "POST",
+    dataType: "text",
+    data: {
+      action: "submit",
+      customer_number: customer_number,
+      customer_name: customer_name,
+      customer_email: customer_email,
+      customer_contact: customer_contact,
+      customer_address: customer_address,
+      customer_date: customer_date,
+    },
+    success: function (data) {
+      // console.log(data);
+      var json = $.parseJSON(data);
+
+      if (json == null) return false;
+
+      if (json.status == 200) {
+        $("#updateCustModal").modal("hide");
+
+        alertify.set("notifier", "position", "top-right");
+        alertify.success(json.message);
+
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR.status);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
   });
 });
 
@@ -137,9 +203,10 @@ function detailedCustomer(cust_no) {
     success: function (data) {
       var json = $.parseJSON(data);
       if (json == null) return false;
-      console.log(json);
+      // console.log(json);
       if (json.status == 200) {
         $.each(json.data, function (k, v) {
+          $(".custNumber").val(v.customer_number);
           $(".updateName").val(v.name);
           $(".updateEmail").val(v.email);
           $(".updateContact").val(v.contact);

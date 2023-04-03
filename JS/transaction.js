@@ -414,7 +414,7 @@ function getTotalQuantity() {
 }
 
 function getTotalPrice() {
-  console.log("price: " + itemsCollection.length);
+  // console.log("price: " + itemsCollection.length);
   var sum = 0;
   if (itemsCollection.length > 0) {
     sum = $.map(itemsCollection, function (obj) {

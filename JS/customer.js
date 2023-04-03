@@ -194,7 +194,6 @@ $(document).on("click", ".spn-view-transaction", function () {
 });
 
 function detailedCustomer(cust_no) {
-  var html = "";
   $.ajax({
     url: "customer_list.php?cust_no=" + cust_no,
     type: "GET",

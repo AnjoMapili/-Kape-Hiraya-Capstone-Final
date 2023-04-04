@@ -232,7 +232,7 @@ function customers() {
           html += "<tr class='tr-cust-" + v.id + "'>";
           html +=
             '<td class="text-center" style="color:D1D6DD;">' +
-            v.customer_number +
+            (k + 1) +
             "</td>";
           html +=
             '<td class="text-center" style="color:D1D6DD;">' + v.name + "</td>";

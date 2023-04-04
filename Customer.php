@@ -37,7 +37,7 @@ include "Connections/dbconnect.php";
             <table id="tbl-customers" class="display tbl-customers" style="width:100%; color:F3F4F4">
                <thead>
                   <tr>
-                     <th class="text-center">Customer #</th>
+                     <th class="text-center">ID</th>
                      <th class="text-center">Name</th>
                      <th class="text-center">Email</th>
                      <th class="text-center">Contact No.</th>

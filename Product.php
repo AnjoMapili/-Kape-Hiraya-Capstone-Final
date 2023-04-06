@@ -166,10 +166,13 @@ include "Connections/dbconnect.php";
       <?php
        $sql="SELECT * FROM `products`";
        $result=mysqli_query($con,$sql);
+       $number=1;
        if(mysqli_num_rows($result) > 0){
           foreach($result as $product){
+            $number++;
             ?>
-               <tr>
+           
+            <tr>
         <td><?=$product['id'] ?></td>
         <td><?=$product['name'] ?></td>
         <td><?=$product['quantity'] ?></td>
@@ -187,6 +190,7 @@ include "Connections/dbconnect.php";
 </button>
         </td>
       </tr>
+      
             <?php
           }
        }
@@ -195,7 +199,9 @@ include "Connections/dbconnect.php";
 
       
     </tbody>
+  
   </table>
+ 
 </div>
     </main>
         <!-- End Main -->

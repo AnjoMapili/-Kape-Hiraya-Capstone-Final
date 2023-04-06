@@ -27,7 +27,7 @@ if(isset($_GET['displaySend'])){
         $price2=$row['price_500g']; 
         $price3=$row['price_1kg']; 
         // $price4=$row['price4']; 
-        $table.='  <tr>
+        $table.='<tr>
         <td scope="row">'.$number.'</td>
         <td>'.$name.'</td>
         <td>'.$quantity.'</td>
@@ -35,10 +35,9 @@ if(isset($_GET['displaySend'])){
         <td>'.$price2.'</td>
         <td>'.$price3.'</td>
         <td> 
-  <button class="btn btn-primary"onclick="GetProductDetais('.$id.')">Update</button>
-  <button class="btn btn-danger"onclick="DeleteUser('.$id.')">Delete</button>
-  
-</td>
+          <button class="btn btn-primary"onclick="GetProductDetais('.$id.')">Update</button>
+          <button class="btn btn-danger"onclick="DeleteUser('.$id.')">Delete</button>
+        </td>
       </tr>'; 
       $number++;
     }

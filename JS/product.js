@@ -75,7 +75,6 @@ $(document).on("click", ".updateBtn", function () {
       $("#product_id").val(data.productid);
       $("#UproductName").val(data.UproductName);
       $("#UproductQuantity").val(data.UproductQuantity);
-
       $("#UproductPrice2").val(data.UproductPrice2);
       $("#UproductPrice3").val(data.UproductPrice3);
       $("#UproductPrice4").val(data.UproductPrice4);

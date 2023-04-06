@@ -129,13 +129,7 @@ $(document).ready(function () {
     var customer_address = $(".txt-address").val();
     var customer_contact_number = $(".txt-contact-number").val();
 
-    if (
-      !customer_payment_method ||
-      !customer_name ||
-      !customer_address ||
-      !customer_contact_number ||
-      itemsCollection.length <= 0
-    ) {
+    if (!customer_payment_method || itemsCollection.length <= 0) {
       alertify.set("notifier", "position", "top-right");
       alertify.error("Please fill out all fields.");
       return;

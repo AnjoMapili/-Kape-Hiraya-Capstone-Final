@@ -17,7 +17,6 @@ $(document).ready(function () {
   });
   $(document).on("click", ".btn-close-add-customer", function () {
     $("#customerModal").modal("hide");
-
     $(".completeName").val("");
     $(".completeEmail").val("");
     $(".completeContact").val("");

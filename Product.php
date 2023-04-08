@@ -169,6 +169,7 @@ include "Connections/dbconnect.php";
          </div>
       </div>
 
+
       <div class="container-fluid px-4">
          <h2 class="mt-4">PRODUCT LIST</h2>
 
@@ -288,7 +289,113 @@ include "Connections/dbconnect.php";
             </table>
          </div>
    </main>
-   <!-- End Main -->
+  
+
+      <!-- Modal Body -->
+<div class="modal-body" style="color:black">
+<form id=updateProduct> 
+<div id="errorMessageUpdate"class="alert alert-warning d-none"></div>
+<input type="hidden" name="product_id" id="product_id">
+
+<div class="mb-3">
+    <label for="productName" class="form-label">Name</label>
+    <input type="text" class="form-control" name="productName"  id="UproductName"aria-describedby="emailHelp" placeholder="Enter your name" > 
+  </div>
+  <div class="mb-3">
+    <label for="productQuantity" class="form-label">Quantity</label>
+    <input type="text" class="form-control"  name="productQuantity" id="UproductQuantity" aria-describedby="emailHelp" placeholder="Enter your quantity" > 
+  </div>
+  <div class="mb-3">
+    <label for="productPrice2" class="form-label">Price (250g)</label>
+    <input type="text" class="form-control" name="productPrice2"  id="UproductPrice2"aria-describedby="emailHelp" placeholder="Enter your price" > 
+  </div>
+  <div class="mb-3">
+    <label for="productPrice3" class="form-label">Price (500g)</label>
+    <input type="text" class="form-control" name="productPrice3"  id="UproductPrice3"aria-describedby="emailHelp" placeholder="Enter your price" > 
+  </div>
+  <div class="mb-3">
+    <label for="productPrice4" class="form-label">Price (1000g)</label>
+    <input type="text" class="form-control" name="productPrice4"  id="UproductPrice4"aria-describedby="emailHelp" placeholder="Enter your price" > 
+  </div>
+</div>
+<!-- Modal Footer -->
+<div class="modal-footer">
+        <button type="submit"  id="saveUpdate" class="btn btn-success">Update</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
+ 
+      </div> 
+</form>   
+      </div>                                
+    </div>
+  </div>
+
+    <div class="container-fluid px-4">
+    <h2 class="mt-4">PRODUCT LIST</h2>
+   
+  
+
+       <!-- Add Customer button Modal -->
+<button type="button" id="btncustomer" class="btn btn-dark my-3" data-bs-toggle="modal" data-bs-target="#productModal">
+  Add Products
+
+</button>
+<div class="card-body my-3">
+  <table id="myTable" class="table fs-5 text-white">
+    <thead class="thead text-primary fs-4">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        
+        <th>Price<br>(250g)</th>
+        <th>Price<br>(500g)</th>
+        <th>Price<br>(1kg)</th>
+        <th>Operation</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+       $sql="SELECT * FROM `products`";
+       $result=mysqli_query($con,$sql);
+       $number=1;
+       if(mysqli_num_rows($result) > 0){
+          foreach($result as $product){
+            $number++;
+            ?>
+           
+            <tr>
+        <td><?=$product['id'] ?></td>
+        <td><?=$product['name'] ?></td>
+        <td><?=$product['quantity'] ?></td>
+       
+        <td><?=$product['price_250g'] ?></td>
+        <td><?=$product['price_500g'] ?></td>
+        <td><?=$product['price_1kg'] ?></td>
+        <td>
+          
+          
+          <button type="button" id="getData" dataid="<?=$product['id']?>"  class="updateBtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#UpdateModal">Edit</button>
+        
+          <button type="button"id="getData" delete_id="<?=$product['id']?>" class="delteBtn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          Delete
+</button>
+        </td>
+      </tr>
+      
+            <?php
+          }
+       }
+       
+      ?>
+
+      
+    </tbody>
+  
+  </table>
+ 
+</div>
+    </main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 </script>

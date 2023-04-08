@@ -33,32 +33,36 @@ function myFunction() {
 
 /*--------------------------------- Delete Product ---------------------------------*/
 $(document).on("click", ".delteBtn", function () {
-  var product_id = $(this).attr("delete_id");
-  $("#delete_id").val(product_id);
-
-  // console.log($(this).attr("dataid"));
-  $(document).on("submit", "#deleteID", function () {
-    $.ajax({
-      type: "POST",
-      url: "addproductQuery.php",
-      data: {
-        delete_product: true,
-        product_id: product_id,
-      },
-      success: function (response) {
-        var res = jQuery.parseJSON(response);
-        if (res.status == 500) {
-          alert(res.message);
-        } else {
-          alertify.set("notifier", "position", "top-right");
-          alertify.success(res.message);
-          $("#deleteModal").modal("hide");
-          $("#myTable").load(location.href + " #myTable");
-        }
-      },
-    });
-  });
-});
+   var product_id = $(this).attr("delete_id");
+   $("#delete_id").val(product_id);
+ });
+ 
+ $(document).on("submit", "#deleteID", function (event) {
+   event.preventDefault(); // prevent form from submitting normally
+ 
+   var product_id = $("#delete_id").val();
+ 
+   $.ajax({
+     type: "POST",
+     dataType: "JSON",
+     url: "deleteproductQuery.php",
+     data: {
+       delete_product: true, // add this parameter to indicate that it is a delete request
+       product_id: product_id,
+     },
+     success: function (response) {
+       console.log(response);
+       if (response.status == 500) {
+         alert(response.message);
+       } else {
+         alertify.set("notifier", "position", "top-right");
+         alertify.success(response.message);
+         $("#deleteModal").modal("hide");
+         $("#myTable").load(location.href + " #myTable");
+       }
+     },
+   });
+ });
 /*----------------------------------- Edit Product -----------------------------------*/
 
 $(document).on("click", ".updateBtn", function () {
@@ -74,7 +78,10 @@ $(document).on("click", ".updateBtn", function () {
     success: function (data) {
       $("#product_id").val(data.productid);
       $("#UproductName").val(data.UproductName);
-      $("#UproductQuantity").val(data.UproductQuantity);
+
+      $("#qty_250g").val(data.qty_250g);
+      $("#qty_500g").val(data.qty_500g);
+      $("#qty_1kg").val(data.qty_1kg);
 
       $("#UproductPrice2").val(data.UproductPrice2);
       $("#UproductPrice3").val(data.UproductPrice3);

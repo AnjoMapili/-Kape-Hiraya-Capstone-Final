@@ -119,15 +119,33 @@ include "Connections/dbconnect.php";
                                        <option disabled selected>--select--</option>
                                        <?php
                                        $sql = "SELECT * FROM products";
+                                       // $sql = "SELECT 
+                                       //    p.id,
+                                       //    p.name,
+                                       //    SUM(p.qty_250g) as inv_qty_250g,
+                                       //    SUM(p.qty_500g) as inv_qty_500g,
+                                       //    SUM(p.qty_1kg) as inv_qty_1kg,
+                                       //    p.price_250g,
+                                       //    p.price_500g,
+                                       //    p.price_1kg,
+                                       //    (SELECT COALESCE(SUM(item_quantity), 0) FROM transactions WHERE item_flavor = p.name AND item_grams = '250G') as trans_qty_250g,
+                                       //    (SELECT COALESCE(SUM(item_quantity), 0) FROM transactions WHERE item_flavor = p.name AND item_grams = '500G') as trans_qty_500g,
+                                       //    (SELECT COALESCE(SUM(item_quantity), 0) FROM transactions WHERE item_flavor = p.name AND item_grams = '1KG') as trans_qty_1kg
+                                       //    FROM products as p GROUP BY p.name
+                                       // ";
                                        $result = $con->query($sql);
-
 
                                        if ($result->num_rows > 0) {
                                           while ($row = $result->fetch_assoc()) {
-
-
                                        ?>
-                                             <option value="<?= $row['name'] ?>" data-price_250g="<?= $row['price_250g'] ?>" data-price_500g="<?= $row['price_500g'] ?>" data-price_1kg="<?= $row['price_1kg'] ?>">
+                                             <option value="<?= $row['name'] ?>" 
+                                                data-qty_250g="<?= $row['qty_250g'] ?>" 
+                                                data-qty_500g="<?= $row['qty_500g'] ?>" 
+                                                data-qty_1kg="<?= $row['qty_1kg'] ?>"
+                                                data-price_250g="<?= $row['price_250g'] ?>" 
+                                                data-price_500g="<?= $row['price_500g'] ?>" 
+                                                data-price_1kg="<?= $row['price_1kg'] ?>"
+                                             >
                                                 <?= $row['name'] ?>
                                              </option>
 

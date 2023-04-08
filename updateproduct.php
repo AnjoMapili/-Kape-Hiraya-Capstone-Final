@@ -6,13 +6,16 @@ if(isset($_POST['update_product']))
 {
     $product_id = mysqli_real_escape_string($con, $_POST['product_id']);
     $name = mysqli_real_escape_string($con, $_POST['productName']);
-    $quantity = mysqli_real_escape_string($con, $_POST['productQuantity']);
+   
+    $qty_250g = mysqli_real_escape_string($con, $_POST['qty_250g']);
+    $qty_500g = mysqli_real_escape_string($con, $_POST['qty_500g']);
+    $qty_1kg = mysqli_real_escape_string($con, $_POST['qty_1kg']);
    
     $price2 = mysqli_real_escape_string($con, $_POST['productPrice2']);
     $price3 = mysqli_real_escape_string($con, $_POST['productPrice3']);
     $price4 = mysqli_real_escape_string($con, $_POST['productPrice4']);
 
-    if($name == NULL || $quantity == NULL  || $price2 == NULL || $price3 == NULL || $price4 == NULL){
+    if($name == NULL || $qty_250g == NULL || $qty_500g == NULL || $qty_1kg == NULL || $price2 == NULL || $price3 == NULL || $price4 == NULL){
         $res = "All field are mandatory";
         // $res = [
         //     'status' => 422,
@@ -21,7 +24,7 @@ if(isset($_POST['update_product']))
         // echo json_encode($res);
         // return false;
     }else{
-        $sql="UPDATE `products` SET name='$name', quantity='$quantity', price_250g='$price2',price_500g='$price3',price_1kg='$price4' WHERE id='$product_id'";
+        $sql="UPDATE `products` SET name='$name', qty_250g='$qty_250g', qty_500g='$qty_500g', qty_1kg='$qty_1kg', price_250g='$price2',price_500g='$price3',price_1kg='$price4' WHERE id='$product_id'";
  
         $query_run=mysqli_query($con,$sql);
     

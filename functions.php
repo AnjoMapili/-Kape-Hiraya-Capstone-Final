@@ -9,8 +9,8 @@ function autoCreateUser() {
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
-    $username = "anjo";
-    $password = "12345";
+    $username = "admin";
+    $password = "admin";
     $password_hash = password_hash($password,PASSWORD_DEFAULT);
 
     $sql = $conn->prepare("SELECT * FROM users WHERE username = :username");

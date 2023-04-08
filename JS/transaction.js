@@ -1,6 +1,9 @@
 var selectedItem = {
   qty: 0,
   uom: "",
+  qty_250g: 0,
+  qty_500g: 0,
+  qty_1kg: 0,
   price_250g: 0.0,
   price_500g: 0.0,
   price_1kg: 0.0,
@@ -55,17 +58,23 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("change", ".sel-flavor-item", function () {
-    var price_250g = $(this).find("option:selected").data("price_250g");
-    var price_500g = $(this).find("option:selected").data("price_500g");
-    var price_1kg = $(this).find("option:selected").data("price_1kg");
+   $(document).on("change", ".sel-flavor-item", function () {
+      var qty_250g = $(this).find("option:selected").data("qty_250g");
+      var qty_500g = $(this).find("option:selected").data("qty_500g");
+      var qty_1kg = $(this).find("option:selected").data("qty_1kg");
+      var price_250g = $(this).find("option:selected").data("price_250g");
+      var price_500g = $(this).find("option:selected").data("price_500g");
+      var price_1kg = $(this).find("option:selected").data("price_1kg");
 
-    selectedItem.price_250g = price_250g;
-    selectedItem.price_500g = price_500g;
-    selectedItem.price_1kg = price_1kg;
+      selectedItem.qty_250g = qty_250g;
+      selectedItem.qty_500g = qty_500g;
+      selectedItem.qty_1kg = qty_1kg;
+      selectedItem.price_250g = price_250g;
+      selectedItem.price_500g = price_500g;
+      selectedItem.price_1kg = price_1kg;
 
-    calculation();
-  });
+      calculation();
+   });
 
   $(document).on("change", ".sel-measurement", function () {
     var newUOM = $(this).val();
@@ -79,47 +88,75 @@ $(document).ready(function () {
     calculation();
   });
 
-  $(document).on("click", ".add-more-item", function () {
-    var selFlavorItem = $(".sel-flavor-item").val();
-    var selRoastItem = $(".sel-roast-item").val();
-    var selGrindItem = $(".sel-grind-item").val();
-    var txtQuantity = $(".txt-quantity").val();
-    var selMeasurement = $(".sel-measurement").val();
-    var txtPrice = $(".txt-price").val();
+   $(document).on("click", ".add-more-item", function () {
+      var selFlavorItem = $(".sel-flavor-item").val();
+      var selRoastItem = $(".sel-roast-item").val();
+      var selGrindItem = $(".sel-grind-item").val();
+      var txtQuantity = $(".txt-quantity").val();
+      var selMeasurement = $(".sel-measurement").val();
+      var txtPrice = $(".txt-price").val();
 
-    if (
+      if (
       !selFlavorItem ||
       !selRoastItem ||
       !selGrindItem ||
       !txtQuantity ||
       !selMeasurement ||
       !txtPrice
-    ) {
-      alertify.set("notifier", "position", "top-right");
-      alertify.error("Please fill out all fields.");
-      return;
-    }
+      ) {
+         alertify.set("notifier", "position", "top-right");
+         alertify.error("Please fill out all fields.");
+         return;
+      }
 
-    itemsCollection.push({
-      selFlavorItem: selFlavorItem,
-      selRoastItem: selRoastItem,
-      selGrindItem: selGrindItem,
-      txtQuantity: parseInt(txtQuantity),
-      selMeasurement: selMeasurement,
-      txtPrice: parseFloat(txtPrice),
-    });
+      switch (selMeasurement) {
+         case "250G":
+            var selectedQty = selectedItem.qty_250g;
+            break;
 
-    listOfItemsCollection();
+         case "500G":
+            var selectedQty = selectedItem.qty_500g;
+            break;
 
-    $(".sel-flavor-item").val("--select--");
-    $(".sel-roast-item").val("--select--");
-    $(".sel-grind-item").val("--select--");
-    $(".txt-quantity").val("");
-    $(".sel-measurement").val("--select--");
-    $(".txt-price").val("");
+         case "1KG":
+            var selectedQty = selectedItem.qty_1kg;
+            break;
+      
+         default:
+            break;
+      }
 
-    reset();
-  });
+      itemsCollection.push({
+         selFlavorItem: selFlavorItem,
+         selRoastItem: selRoastItem,
+         selGrindItem: selGrindItem,
+         txtQuantity: parseInt(txtQuantity),
+         selMeasurement: selMeasurement,
+         txtPrice: parseFloat(txtPrice),
+      });
+
+      var totalQty = totalQuantityPerFlavor(selFlavorItem, selMeasurement);
+
+      if(selectedQty < totalQty) {
+         alertify.set("notifier", "position", "top-right");
+         alertify.error("The quantity available is insufficient.");
+
+         // removes the last element from the array 
+         itemsCollection.pop();
+         return;
+      }
+
+      listOfItemsCollection();
+
+      $(".sel-flavor-item").val("--select--");
+      $(".sel-roast-item").val("--select--");
+      $(".sel-grind-item").val("--select--");
+      $(".txt-quantity").val("");
+      $(".sel-measurement").val("--select--");
+      $(".txt-price").val("");
+
+      reset();
+   });
 
   $(document).on("click", "#btn-submit-item", function (e) {
     e.preventDefault();
@@ -259,6 +296,17 @@ $(document).ready(function () {
   });
 });
 
+function totalQuantityPerFlavor(flavorName, uom) {
+   var sum = 0;
+   $.each(itemsCollection, function(index, value) {
+      if(value.selFlavorItem === flavorName && value.selMeasurement === uom) {
+         sum += value.txtQuantity;
+      }
+   });
+   
+   return sum;
+}
+
 function calculation() {
   switch (selectedItem.uom) {
     case "250G":
@@ -389,7 +437,9 @@ function listOfItemsCollection() {
   }
 
   $("#tbl-items > tbody").html(html);
-  getTotalQuantity();
+  var totalQty = getTotalQuantity();
+  $(".spn-qty").empty().append(totalQty.toLocaleString());
+
   getTotalPrice();
 }
 
@@ -403,8 +453,7 @@ function getTotalQuantity() {
     }, 0);
   }
 
-  // return sum;
-  $(".spn-qty").empty().append(sum.toLocaleString());
+  return sum;
 }
 
 function getTotalPrice() {

@@ -9,7 +9,7 @@ class TransactionController
       $this->connection = $connection;
    }
 
-   public function create($data)
+   public function create_old($data)
    {
       $transaction_number = $this->generateRandomNumber();
       $customer_name = $data['customer_name'];
@@ -42,6 +42,73 @@ class TransactionController
 
          // execute the statement
          $result = $stmt->execute();
+
+
+
+
+         if ($measurement == '250G') {
+            $stmt = $this->connection->prepare("UPDATE `products` SET `qty_250g` = `quantity` - ? WHERE `name` = ?");
+            if (!$stmt) {
+               return $this->getDataAsJSON([
+                  'status' => 500,
+                  'message' => 'Failed to prepare SQL statement'
+               ]);
+            }
+
+            $stmt->bind_param("is", $quantity, $flavor);
+            $result = $stmt->execute();
+
+            if (!$result) {
+               return $this->getDataAsJSON([
+                  'status' => 500,
+                  'message' => 'Failed to update product quantity'
+               ]);
+            }
+         }
+
+         if ($measurement == '500G') {
+            $stmt = $this->connection->prepare("UPDATE `products` SET `qty_500g` = `quantity` - ? WHERE `name` = ?");
+            if (!$stmt) {
+               return $this->getDataAsJSON([
+                  'status' => 500,
+                  'message' => 'Failed to prepare SQL statement'
+               ]);
+            }
+
+            $stmt->bind_param("is", $quantity, $flavor);
+            $result = $stmt->execute();
+
+            if (!$result) {
+               return $this->getDataAsJSON([
+                  'status' => 500,
+                  'message' => 'Failed to update product quantity'
+               ]);
+            }
+         }
+
+         if ($measurement == '1KG') {
+            $stmt = $this->connection->prepare("UPDATE `products` SET `qty_1kg` = `quantity` - ? WHERE `name` = ?");
+            if (!$stmt) {
+               return $this->getDataAsJSON([
+                  'status' => 500,
+                  'message' => 'Failed to prepare SQL statement'
+               ]);
+            }
+
+            $stmt->bind_param("is", $quantity, $flavor);
+            $result = $stmt->execute();
+
+            if (!$result) {
+               return $this->getDataAsJSON([
+                  'status' => 500,
+                  'message' => 'Failed to update product quantity'
+               ]);
+            }
+         }
+
+
+
+
          if (!$result) {
             return $this->getDataAsJSON([
                'status' => 500,
@@ -55,6 +122,79 @@ class TransactionController
          'message' => "New record created successfully"
       ]);
    }
+
+   public function create($data)
+   {
+      $transaction_number = $this->generateRandomNumber();
+      $customer_name = $data['customer_name'];
+      $customer_address = $data['customer_address'];
+      $customer_contact_number = $data['customer_contact_number'];
+      $customer_payment_method = $data['customer_payment_method'];
+      $items = $data['data'];
+
+      // start transaction
+      $this->connection->begin_transaction();
+
+      try {
+         foreach ($items as $item) {
+            $flavor = $item['selFlavorItem'];
+            $roast = $item['selRoastItem'];
+            $grind = $item['selGrindItem'];
+            $quantity = $item['txtQuantity'];
+            $measurement = $item['selMeasurement'];
+            $price = $item['txtPrice'];
+            $status = 'Pending';
+            $created_at = date('Y-m-d H:i:s');
+
+            // prepare the statement
+            $stmt = $this->connection->prepare("INSERT INTO `transactions` (`transaction_number`, `customer_name`, `customer_address`, `customer_contact_number`, `customer_payment_method`, `item_flavor`, `item_type_of_roast`, `item_type_of_grind`, `item_quantity`, `item_grams`, `item_price`, `status`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            if (!$stmt) {
+               throw new Exception('Failed to prepare SQL statement');
+            }
+
+            // bind the values
+            $stmt->bind_param("sssssssssssss", $transaction_number, $customer_name, $customer_address, $customer_contact_number, $customer_payment_method, $flavor, $roast, $grind, $quantity, $measurement, $price, $status, $created_at);
+
+            // execute the statement
+            $result = $stmt->execute();
+
+            if (!$result) {
+               throw new Exception('Failed to insert transaction');
+            }
+
+            // update product quantity
+            $quantity_column = "qty_$measurement";
+            $stmt = $this->connection->prepare("UPDATE `products` SET `$quantity_column` = `$quantity_column` - ? WHERE `name` = ?");
+            if (!$stmt) {
+               throw new Exception('Failed to prepare SQL statement');
+            }
+
+            $stmt->bind_param("is", $quantity, $flavor);
+            $result = $stmt->execute();
+
+            if (!$result) {
+               throw new Exception('Failed to update product quantity');
+            }
+         }
+
+         // commit transaction
+         $this->connection->commit();
+
+         return $this->getDataAsJSON([
+            'status' => 200,
+            'message' => "New record created successfully"
+         ]);
+      } catch (Exception $e) {
+         // rollback transaction
+         $this->connection->rollback();
+
+         return $this->getDataAsJSON([
+            'status' => 500,
+            'message' => $e->getMessage()
+         ]);
+      }
+   }
+
 
    public function read($transaction_number = null)
    {
@@ -119,7 +259,8 @@ class TransactionController
       }
    }
 
-   public function numberOfTransaction()  {
+   public function numberOfTransaction()
+   {
       $sql = "SELECT * FROM transactions";
       $result = $this->connection->query($sql);
       return $result->num_rows;

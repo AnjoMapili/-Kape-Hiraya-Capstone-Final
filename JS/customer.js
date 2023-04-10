@@ -72,7 +72,7 @@ $(document).ready(function () {
         var json = $.parseJSON(data);
         if (json == null) return false;
         if (json.status == 200) {
-          $("#TransactionModal").modal("hide");
+          $("#customerModal").modal("hide");
 
           alertify.set("notifier", "position", "top-right");
           alertify.success(json.message);
